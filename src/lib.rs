@@ -5,6 +5,7 @@
  */
 use std::env;
 use std::fs;
+use std::io::{self, BufRead};
 
 pub mod helpers;
 
@@ -19,7 +20,7 @@ macro_rules! solve {
         use std::fmt::Display;
         use std::time::Instant;
 
-        fn print_result<T: Display>(func: impl FnOnce(&str) -> Option<T>, input: &str) {
+        fn print_result<T: Display>(func: impl FnOnce(&[String]) -> Option<T>, input: &[String]) {
             let timer = Instant::now();
             let result = func(input);
             let elapsed = timer.elapsed();
@@ -41,13 +42,16 @@ macro_rules! solve {
     }};
 }
 
-pub fn read_file(folder: &str, day: u8) -> String {
+pub fn read_file(folder: &str, day: u8) -> Vec<String> {
     let cwd = env::current_dir().unwrap();
 
     let filepath = cwd.join("src").join(folder).join(format!("{:02}.txt", day));
 
-    let f = fs::read_to_string(filepath);
-    f.expect("could not open input file")
+    let file = fs::File::open(filepath).expect("could not open input file");
+    io::BufReader::new(file)
+        .lines()
+        .map(|line| line.unwrap())
+        .collect()
 }
 
 fn parse_time(val: &str, postfix: &str) -> f64 {

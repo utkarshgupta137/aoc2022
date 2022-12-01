@@ -8,11 +8,29 @@ use std::{
     process,
 };
 
-const MODULE_TEMPLATE: &str = r###"pub fn part_one(input: &str) -> Option<u32> {
+const MODULE_TEMPLATE: &str = r###"use itertools::Itertools;
+use regex::Regex;
+
+type Ret = (i32, i32);
+
+fn parse_file(lines: &[String]) -> Vec<Ret> {
+    let re = Regex::new(r"(\w+): (\d+)").unwrap();
+    lines
+        .iter()
+        .filter_map(|line| {
+
+        })
+        .sorted_unstable()
+        .collect_vec()
+}
+
+pub fn part_one(lines: &[String]) -> Option<i32> {
+    let _ = parse_file(lines);
     None
 }
 
-pub fn part_two(input: &str) -> Option<u32> {
+pub fn part_two(lines: &[String]) -> Option<i32> {
+    let _ = parse_file(lines);
     None
 }
 
