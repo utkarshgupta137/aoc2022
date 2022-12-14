@@ -1,0 +1,8 @@
+[package]
+name = "aoc2022"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+itertools = { version = "0.10.5" }
+rayon = { version = "1.6.1" }
