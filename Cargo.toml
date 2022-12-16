@@ -5,6 +5,7 @@ edition = "2021"
 default-run = "advent_of_code"
 
 [dependencies]
+cached = "0.41.0"
 itertools = "0.10"
 pico-args = "0.5"
 rayon = "1.6"
