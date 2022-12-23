@@ -6,7 +6,9 @@ default-run = "advent_of_code"
 
 [dependencies]
 cached = "0.41.0"
+glam = "0.22"
 itertools = "0.10"
 pico-args = "0.5"
 rayon = "1.6"
 regex = "1.7"
+sark_grids = "0.5"
